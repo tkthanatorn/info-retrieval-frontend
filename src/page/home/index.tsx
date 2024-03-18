@@ -145,13 +145,6 @@ const Home = () => {
         direction="row"
       >
         <Title order={1}>Recipes</Title>
-        <Button
-          variant="subtle"
-          onClick={() => navigate("/bookmark")}
-          rightSection={<IconArrowRight size={20} />}
-        >
-          Bookmark
-        </Button>
       </Flex>
 
       <Stack>

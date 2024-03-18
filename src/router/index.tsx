@@ -7,15 +7,16 @@ import {
   RouterProvider,
   createBrowserRouter,
   createRoutesFromElements,
-  useNavigate,
 } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { getUserAPI } from "../api";
+import Bookmark from "../page/bookmark";
 import Home from "../page/home";
 import Login from "../page/login";
 import Register from "../page/register";
 import { userIdState } from "../store";
-import Bookmark from "../page/bookmark";
+import { useLocalStorage } from "@mantine/hooks";
+import Navbar from "./Navbar";
 
 interface ICustomRoute {
   user_id: string | null;
@@ -70,8 +71,10 @@ const ProtectRoute = ({
 
 const Router = () => {
   const [userId, setUserId] = useRecoilState(userIdState);
+
   useQuery(["user"], getUserAPI, {
     onSuccess: (resp) => {
+      if (!resp) return;
       const result = resp.data.result;
       if (!resp.data.success || !result) {
         notifications.show({
@@ -94,32 +97,34 @@ const Router = () => {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route>
-        <Route
-          index
-          path=""
-          element={
-            <ProtectRoute
-              isLoading={false}
-              redirectPath="/auth/login"
-              user_id={userId}
-            >
-              <Home />
-            </ProtectRoute>
-          }
-        />
+        <Route element={<Navbar />}>
+          <Route
+            index
+            path=""
+            element={
+              <ProtectRoute
+                isLoading={false}
+                redirectPath="/auth/login"
+                user_id={userId}
+              >
+                <Home />
+              </ProtectRoute>
+            }
+          />
 
-        <Route
-          path="bookmark"
-          element={
-            <ProtectRoute
-              isLoading={false}
-              redirectPath="/auth/login"
-              user_id={userId}
-            >
-              <Bookmark />
-            </ProtectRoute>
-          }
-        />
+          <Route
+            path="bookmark"
+            element={
+              <ProtectRoute
+                isLoading={false}
+                redirectPath="/auth/login"
+                user_id={userId}
+              >
+                <Bookmark />
+              </ProtectRoute>
+            }
+          />
+        </Route>
 
         <Route
           path="auth"

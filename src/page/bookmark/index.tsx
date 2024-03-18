@@ -66,13 +66,6 @@ const Bookmark = () => {
         direction="row"
       >
         <Title order={1}>Bookmark</Title>
-        <Button
-          variant="subtle"
-          onClick={() => navigate("/")}
-          rightSection={<IconArrowRight size={20} />}
-        >
-          Home
-        </Button>
       </Flex>
 
       <Stack>
