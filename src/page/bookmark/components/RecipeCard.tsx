@@ -48,14 +48,14 @@ const RecipeCard = ({ recipe, onRemove }: RecipeCardProps) => {
               <Stack>
                 <Title order={2}>{recipe.name}</Title>
                 <Text>{recipe.description}</Text>
-                {recipe.score ? (
+                {recipe.rating ? (
                   <Flex
                     gap="xs"
                     direction="row"
                     align="center"
                   >
-                    <Text>score: </Text>
-                    <Badge>{recipe.score.toFixed(2)}</Badge>
+                    <Text>rate: </Text>
+                    <Badge>{recipe.rating}</Badge>
                   </Flex>
                 ) : null}
               </Stack>
