@@ -15,7 +15,6 @@ import Home from "../page/home";
 import Login from "../page/login";
 import Register from "../page/register";
 import { userIdState } from "../store";
-import { useLocalStorage } from "@mantine/hooks";
 import Navbar from "./Navbar";
 
 interface ICustomRoute {

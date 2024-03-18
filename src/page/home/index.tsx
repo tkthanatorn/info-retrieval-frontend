@@ -12,11 +12,7 @@ import {
 } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { notifications } from "@mantine/notifications";
-import {
-  IconArrowRight,
-  IconRefreshDot,
-  IconSearch,
-} from "@tabler/icons-react";
+import { IconRefreshDot, IconSearch } from "@tabler/icons-react";
 import { useState } from "react";
 import { useMutation, useQuery } from "react-query";
 import {
@@ -27,7 +23,6 @@ import {
 } from "../../api";
 import { Recipe } from "../../types";
 import RecipeCard from "./components/RecipeCard";
-import { useNavigate } from "react-router-dom";
 
 type SearchForm = {
   type: "Name" | "Instruction" | "Ingredient";
@@ -36,7 +31,6 @@ type SearchForm = {
 
 const Home = () => {
   // simple recipe state management
-  const navigate = useNavigate();
   const [recipes, setRecipes] = useState<Recipe[]>([]);
   const [totalPage, setTotalPage] = useState<number>(10);
   const [page, setPage] = useState<number>(0);

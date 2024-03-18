@@ -1,17 +1,14 @@
-import { Button, Container, Flex, Stack, Title } from "@mantine/core";
-import { IconArrowRight } from "@tabler/icons-react";
-import { useNavigate } from "react-router-dom";
-import RecipeCard from "./components/RecipeCard";
-import { Recipe } from "../../types";
+import { Container, Flex, Stack, Title } from "@mantine/core";
+import { notifications } from "@mantine/notifications";
 import { useState } from "react";
 import { useMutation, useQuery } from "react-query";
-import { deleteBookmarkAPI, getBookmarkAPI } from "../../api/bookmark";
 import { useRecoilValue } from "recoil";
+import { deleteBookmarkAPI, getBookmarkAPI } from "../../api/bookmark";
 import { userIdState } from "../../store";
-import { notifications } from "@mantine/notifications";
+import { Recipe } from "../../types";
+import RecipeCard from "./components/RecipeCard";
 
 const Bookmark = () => {
-  const navigate = useNavigate();
   const userId = useRecoilValue(userIdState);
   const [recipes, setRecipes] = useState<Recipe[]>([]);
   const { refetch } = useQuery(
